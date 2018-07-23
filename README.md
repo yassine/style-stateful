@@ -29,7 +29,7 @@ class MyFancyInput extends React.Component {
 
 //Here is our mapper
 function mapPropsToStyleState(props, state) {
-  //a state is activated when its associated boolean value is true
+  //a style/css state would be activated when its associated boolean value is true
   return {
     'highlight' : props.isHightlighted,
     'valid'     : !!props.value,
