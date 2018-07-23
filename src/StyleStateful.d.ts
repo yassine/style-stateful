@@ -11,11 +11,11 @@ import * as React from 'react';
  * @constructor
  */
 export function StyleStatefulComponent<T,P,S> (TargetComponentClass: Constructor<T & React.Component<P,S>>,
-                                               styles: Dictionary,
-                                               mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>)
+                                               mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>,
+                                               styles?: Dictionary,)
                 : Constructor<T & React.Component<P & StyleStatefulProps, S>>
 
-export function StyleStateful<T,P,S> (styles: Dictionary, mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>)
+export function StyleStateful<T,P,S> (mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>, styles?: Dictionary)
 
 /**
  *

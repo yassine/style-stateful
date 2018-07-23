@@ -11,7 +11,7 @@ const className = `test-class`;
 
 class MyTestComponentA extends React.Component<{addCssState ?: boolean}, any> {
   render () {
-    return <div css-ref={className}>
+    return <div css-ref = {className}>
       <span>Hello</span>
       <ul>
         <li css-ref = {className}>Test</li>
@@ -46,13 +46,13 @@ function PropsMapper (props: {addCssState: boolean}) {
   }
 }
 
-@StyleStateful(StyleMapA, PropsMapper)
+@StyleStateful(PropsMapper, StyleMapA)
 class MyHoCComponentD extends MyTestComponentA {}
-@StyleStateful(StyleMapA)
+@StyleStateful(PropsMapper)
 class MyHoCComponentE extends MyTestComponentA {}
 
-const MyHoCComponentA = StyleStatefulComponent(MyTestComponentA, StyleMapA, PropsMapper);
-const MyHoCComponentB = StyleStatefulComponent(MyTestComponentB, StyleMapB, PropsMapper);
+const MyHoCComponentA = StyleStatefulComponent(MyTestComponentA, PropsMapper, StyleMapA);
+const MyHoCComponentB = StyleStatefulComponent(MyTestComponentB, PropsMapper, StyleMapB);
 const MyHoCComponentC = StyleStatefulComponentFactory(MyTestComponentA, PropsMapper)(StyleMapA);
 
 describe('CssStatefulComponent : Style statefull higher order (presentational) component', function () {
@@ -80,7 +80,7 @@ describe('CssStatefulComponent : Style statefull higher order (presentational) c
     expect(wrapper.find('[css-ref]')).to.have.length(0);
 
     wrapper = mount(<MyHoCComponentE/>);
-    expect(wrapper.find(`.${className}`)).to.have.length(0);
+    expect(wrapper.find(`.${className}`)).to.have.length(2);
     expect(wrapper.find('[css-ref]')).to.have.length(0);
   });
 
@@ -101,6 +101,12 @@ describe('CssStatefulComponent : Style statefull higher order (presentational) c
     expect(wrapper.find(`.${className}-0000`)).to.have.length(2);
     expect(wrapper.find(`.${className}-0000--some-modifier`)).to.have.length(2);
     expect(wrapper.find(`.${className}-0000.${className}-0000--some-modifier`)).to.have.length(2);
+    expect(wrapper.find('[css-ref]')).to.have.length(0);
+
+    wrapper = mount(<MyHoCComponentE addCssState = {true}/>);
+    expect(wrapper.find(`.${className}`)).to.have.length(2);
+    expect(wrapper.find(`.${className}--some-modifier`)).to.have.length(2);
+    expect(wrapper.find(`.${className}.${className}--some-modifier`)).to.have.length(2);
     expect(wrapper.find('[css-ref]')).to.have.length(0);
 
   });

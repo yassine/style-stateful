@@ -26,21 +26,21 @@ export function StyleStatefulComponentFactory(TargetComponentClass, mapComponent
     };
 }
 
-export function StyleStateful(styles, mapper = defaultMapper){
+export function StyleStateful(mapper = defaultMapper, styles = {}){
   return function(Component){
-    return StyleStatefulComponent(Component, styles, mapper);
+    return StyleStatefulComponent(Component, mapper, styles);
   }
 }
 
-export function StyleStatefulComponent(TargetComponentClass, styles, mapComponentStateToCssState = defaultMapper, classNameStateMapper = defaultClassStateMapper){
+export function StyleStatefulComponent(TargetComponentClass, mapComponentStateToCssState = defaultMapper, styles, classNameStateMapper = defaultClassStateMapper){
   return StyleStatefulComponentFactory(TargetComponentClass, mapComponentStateToCssState, classNameStateMapper)(styles);
 }
 
 // utilities
 
 function getFullClassName(styles, className, classNameStateMapper, cssStates = []){
-  return cssStates.map((state) => styles[classNameStateMapper(className, state)] || '')
-    .reduce((previous, current) => `${previous} ${current}`, styles[className] || '');
+  return cssStates.map((state) => styles[classNameStateMapper(className, state)] || classNameStateMapper(className, state) || '')
+            .reduce((previous, current) => `${previous} ${current}`, styles[className] || className || '');
 }
 
 /**
