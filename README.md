@@ -43,8 +43,8 @@ resulting markup of the following component
 ``<MyFancyInput value = 'Hello World!' isHightlighted = { true }/>`` 
 would be :
 ```
-<div class = 'fancy__wrap fancy__wrap--isHightlighted fancy__wrap--valid'>
-  <label class = 'fancy__label fancy__label--isHightlighted fancy__label--valid' >Name</label>
-  <input class = 'fancy__input fancy__input--isHightlighted fancy__input--valid' type = 'text' value = 'Hello World!'/>
+<div class = 'fancy__wrap fancy__wrap--highlight fancy__wrap--valid'>
+  <label class = 'fancy__label fancy__label--highlight fancy__label--valid' >Name</label>
+  <input class = 'fancy__input fancy__input--highlight fancy__input--valid' type = 'text' value = 'Hello World!'/>
 </div>
 ``` 
