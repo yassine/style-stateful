@@ -10,7 +10,7 @@ A React higher-order component encapsulating style states
 ### Rationale
 
 When developing a Presentational component, often we have to deal with the mechanism by which
-our component would translate its props/state into a set of css style. The goal of the 
+our component would translate its props/state into a set of css classes. The goal of the 
 ``StyleStateful`` hoc is to isolate that mechanism into a reducer like function that would map
 the state and props of the component into a set of CSS states.
 
@@ -29,6 +29,7 @@ class MyFancyInput extends React.Component {
 
 //Here is our mapper
 function mapPropsToStyleState(props, state) {
+  //a state is activated when its associated boolean value is true
   return {
     'highlight' : props.isHightlighted,
     'valid'     : !!props.value,
@@ -37,7 +38,7 @@ function mapPropsToStyleState(props, state) {
 }
 
 ```
-Let's say the component can have many css states such as : valid, invalid and highlighted.
+Let's say the component can have many css states such as : ``valid``, ``invalid`` and ``highlight``.
 By using the Hoc (configured with the appropriate mapper as per the example), the 
 resulting markup of the following component 
 ``<MyFancyInput value = 'Hello World!' isHightlighted = { true }/>`` 
