@@ -1,0 +1,8 @@
+.idea/
+yarn.lock
+yarn-error.log
+npm-debug.log
+reports/
+node_modules/
+.scannerwork/
+project.config.private-overrides.js

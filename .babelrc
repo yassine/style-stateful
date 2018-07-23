@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    [
+      "resolver",
+      {
+        "resolveDirs": [
+          "src", "build", "build/config"
+        ]
+      }
+    ],
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ],
+  "passPerPreset" : true,
+  "presets"       : [ "env", "react" ],
+  "comments"      : true
+}

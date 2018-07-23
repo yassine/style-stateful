@@ -1,0 +1,30 @@
+sudo: required
+dist: trusty
+language: node_js
+before_install:
+  - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update
+  - sudo apt-get install yarn
+  - npm install -g gulp-cli webdriver-manager pm2
+install:
+  - yarn install
+before_script:
+  - webdriver-manager update
+  - pm2 start webdriver-manager -- start
+script:
+  - gulp unit-test
+after_success:
+  # upload results to sonarcloud.io
+  - gulp sonar
+after_script:
+  - pm2 delete webdriver-manager
+node_js:
+  - '8'
+addons:
+  chrome: stable
+cache:
+  directories:
+    - "node_modules"
+notifications:
+  email: false

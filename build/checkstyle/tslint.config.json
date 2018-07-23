@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "semicolon": [0],
+    "no-multi-spaces": [0],
+    "typedef-whitespace": false,
+    "no-var-requires": false,
+    "comment-format": [false, "check-space", "check-uppercase"],
+    "no-empty": false
+  },
+  "extends" : [
+    "tslint-config-standard", "tslint-sonarts"
+  ]
+}
