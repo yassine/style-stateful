@@ -32,7 +32,7 @@ export function StyleStateful(mapper = defaultMapper, styles = {}){
   }
 }
 
-export function StyleStatefulComponent(TargetComponentClass, mapComponentStateToCssState = defaultMapper, styles, classNameStateMapper = defaultClassStateMapper){
+export function StyleStatefulComponent(TargetComponentClass, mapComponentStateToCssState = defaultMapper, styles = {}, classNameStateMapper = defaultClassStateMapper){
   return StyleStatefulComponentFactory(TargetComponentClass, mapComponentStateToCssState, classNameStateMapper)(styles);
 }
 

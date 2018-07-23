@@ -1,9 +1,9 @@
 # style-stateful
 ![Build Status](https://www.travis-ci.org/yassine/style-stateful.svg?branch=master)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?metric=alert_status&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:soxy-chains-ui)
-[![Maintainability](https://sonarcloud.io/api/project_badges/measure?metric=sqale_rating&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:soxy-chains-ui)
-[![Reliability](https://sonarcloud.io/api/project_badges/measure?metric=reliability_rating&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:soxy-chains-ui)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?metric=coverage&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:soxy-chains-ui)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?metric=alert_status&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:style-stateful)
+[![Maintainability](https://sonarcloud.io/api/project_badges/measure?metric=sqale_rating&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:style-stateful)
+[![Reliability](https://sonarcloud.io/api/project_badges/measure?metric=reliability_rating&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:style-stateful)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?metric=coverage&project=com.github.yassine%3Astyle-stateful)](https://sonarcloud.io/dashboard/index/com.github.yassine:style-stateful)
 
 A React higher-order component encapsulating style states
 
