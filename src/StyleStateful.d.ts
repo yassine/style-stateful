@@ -10,10 +10,10 @@ import * as React from 'react';
  * @returns {Constructor<T & React.Component<P, S>>}
  * @constructor
  */
-export function StyleStatefulComponent<T,P,S> (TargetComponentClass: Constructor<T & React.Component<P,S>>,
+export function StyleStatefulComponent<T,P,S> (TargetComponentClass: Constructor<T & React.Component<P,S>> | React.SFC<P>,
                                                mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>,
                                                styles?: Dictionary,)
-                : Constructor<T & React.Component<P & StyleStatefulProps, S>>
+                : Constructor<T & React.Component<P & StyleStatefulProps, S>> | React.SFC<P>
 
 export function StyleStateful<T,P,S> (mapComponentStateToCssState ?: ComponentStateCssMapper<P,S>, styles?: Dictionary)
 
@@ -24,9 +24,9 @@ export function StyleStateful<T,P,S> (mapComponentStateToCssState ?: ComponentSt
  * @returns {(cssSheet: {[p: string]: string}) => Constructor<T & React.Component<P, S>>}
  * @constructor
  */
-export function StyleStatefulComponentFactory<T,P,S> (TargetComponentClass: Constructor<T & React.Component<P,S>>,
+export function StyleStatefulComponentFactory<T,P,S> (TargetComponentClass: Constructor<T & React.Component<P,S>> | React.SFC<P>,
                                                       mapComponentStateToCssState: ComponentStateCssMapper<P,S>)
-  : (cssSheet: {[key: string]: string}) => Constructor<T & React.Component<P & StyleStatefulProps, S>>
+  : (cssSheet: {[key: string]: string}) => Constructor<T & React.Component<P & StyleStatefulProps, S>> | React.SFC<P>
 
 interface StyleStatefulProps {
   permanentCSSState ?: {[key: string]: boolean | string}

@@ -10,20 +10,24 @@ const DEFAULT_TARGET_ATTRIBUTE_NAME = 'className';
  */
 export function StyleStatefulComponentFactory(TargetComponentClass, mapComponentStateToCssState, classNameStateMapper = defaultClassStateMapper)
 {
-  return (styles) => class StyleStatefulComponent extends TargetComponentClass {
+  const ParentClass = TargetComponentClass.prototype.render ? TargetComponentClass : React.Component;
 
-      static displayName = `CssStatefulComponent<${TargetComponentClass['displayName'] || TargetComponentClass['name']}>`;
-      static $$StyleStatefulComponent = true;
+  return (styles) => class StyleStatefulComponent extends ParentClass {
 
-      render() {
-        const cssState  = Object.assign({}, mapComponentStateToCssState(this.props, this.state), this.props.permanentCSSState);
-        const cssStates = Object.keys(cssState)
-          .filter(key => !!cssState[key])
-          .map(key => typeof cssState[key] === 'string' ? cssState[key] : key);
-        return recursiveReplace(super.render(), (className) => getFullClassName(styles, className, classNameStateMapper, cssStates));
-      }
+    static displayName = `CssStatefulComponent<${TargetComponentClass['displayName'] || TargetComponentClass['name']}>`;
+    static $$StyleStatefulComponent = true;
 
-    };
+    render() {
+      const render = TargetComponentClass.prototype.render ? super.render.bind(this) : TargetComponentClass.bind(this.props);
+      const cssState  = Object.assign({}, mapComponentStateToCssState(this.props, this.state), this.props.permanentCSSState);
+      const cssStates = Object.keys(cssState)
+        .filter(key => !!cssState[key])
+        .map(key => typeof cssState[key] === 'string' ? cssState[key] : key);
+      return recursiveReplace(render(), (className) => getFullClassName(styles, className, classNameStateMapper, cssStates));
+    }
+
+  };
+
 }
 
 export function StyleStateful(mapper = defaultMapper, styles = {}){

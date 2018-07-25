@@ -30,6 +30,15 @@ class MyTestComponentB extends React.Component<{addCssState ?: boolean}, any> {
   }
 }
 
+const MyPureComponent: React.SFC<any> = function(){
+  return <div css-ref = {className}>
+    <span>Hello</span>
+    <ul>
+      <li css-ref = {className}>Test</li>
+    </ul>
+  </div>;
+};
+
 const StyleMapA = {
   'test-class' : `${className}-0000`,
   'test-class--some-modifier' : `${className}-0000--some-modifier`
@@ -54,6 +63,8 @@ class MyHoCComponentE extends MyTestComponentA {}
 const MyHoCComponentA = StyleStatefulComponent(MyTestComponentA, PropsMapper, StyleMapA);
 const MyHoCComponentB = StyleStatefulComponent(MyTestComponentB, PropsMapper, StyleMapB);
 const MyHoCComponentC = StyleStatefulComponentFactory(MyTestComponentA, PropsMapper)(StyleMapA);
+
+const MyHoPureComponent = StyleStatefulComponent(MyPureComponent, PropsMapper, StyleMapA);
 
 describe('CssStatefulComponent : Style statefull higher order (presentational) component', function () {
 
@@ -81,6 +92,11 @@ describe('CssStatefulComponent : Style statefull higher order (presentational) c
 
     wrapper = mount(<MyHoCComponentE/>);
     expect(wrapper.find(`.${className}`)).to.have.length(2);
+    expect(wrapper.find('[css-ref]')).to.have.length(0);
+
+    wrapper = mount(<MyHoPureComponent/>);
+    expect(wrapper.find(`.${className}-0000`)).to.have.length(2);
+    expect(wrapper.find(`.${className}`)).to.have.length(0);
     expect(wrapper.find('[css-ref]')).to.have.length(0);
   });
 
